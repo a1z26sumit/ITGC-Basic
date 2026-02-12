@@ -1,0 +1,67 @@
+# ----------------------------
+# ITGC Simulation Program
+# ----------------------------
+
+# 1️⃣ ACCESS CONTROL DATA
+users = [
+    {"name": "Admin1", "role": "admin", "active": True},
+    {"name": "Dev1", "role": "developer", "active": True},
+    {"name": "ExEmployee", "role": "developer", "active": False}
+]
+
+# 2️⃣ CHANGE MANAGEMENT DATA
+change_requests = [
+    {"change_id": 101, "approved": True, "tested": True},
+    {"change_id": 102, "approved": False, "tested": True},
+    {"change_id": 103, "approved": True, "tested": False}
+]
+
+# 3️⃣ BACKUP LOGS
+backups = {
+    "last_backup_days_ago": 2,
+    "backup_successful": True
+}
+
+
+# ----------------------------
+# ITGC CHECK FUNCTIONS
+# ----------------------------
+
+def check_access_controls():
+    print("🔍 Checking Access Controls...")
+    for user in users:
+        if user["active"] == False:
+            print(f"⚠️ Inactive user found: {user['name']}")
+    print("Access control review completed.\n")
+
+
+def check_change_management():
+    print("🔍 Checking Change Management...")
+    for change in change_requests:
+        if not change["approved"]:
+            print(f"⚠️ Change {change['change_id']} not approved!")
+        if not change["tested"]:
+            print(f"⚠️ Change {change['change_id']} not tested!")
+    print("Change management review completed.\n")
+
+
+def check_backup_controls():
+    print("🔍 Checking Backup Controls...")
+    if backups["last_backup_days_ago"] > 1:
+        print("⚠️ Backup not recent!")
+    if not backups["backup_successful"]:
+        print("⚠️ Backup failed!")
+    print("Backup review completed.\n")
+
+
+# ----------------------------
+# RUN ITGC REVIEW
+# ----------------------------
+
+print("===== ITGC REVIEW STARTED =====\n")
+
+check_access_controls()
+check_change_management()
+check_backup_controls()
+
+print("===== ITGC REVIEW COMPLETED =====")
